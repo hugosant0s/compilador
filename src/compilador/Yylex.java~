@@ -8,7 +8,7 @@ package compilador;
  * <a href="http://www.jflex.de/">JFlex</a> 1.6.1
  * from the specification file <tt>D:/Hugo/Projetos/compilador/src/compilador/lexic.flex</tt>
  */
-class Yylex {
+class Yylex implements java_cup.runtime.Scanner {
 
   /** This character denotes the end of file */
   public static final int YYEOF = -1;
@@ -33,15 +33,12 @@ class Yylex {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\10\0\2\1\1\3\1\42\1\42\1\2\22\0\1\1\1\0\1\40"+
-    "\5\0\1\0\1\0\1\6\1\10\1\0\1\10\1\0\1\7\1\5"+
-    "\11\41\1\11\1\32\1\13\1\12\1\14\2\0\1\4\1\4\1\4"+
-    "\1\4\1\4\1\4\1\4\1\4\1\4\2\4\1\4\1\4\1\4"+
-    "\1\4\1\4\1\4\1\4\1\4\1\4\1\4\1\4\1\4\1\4"+
-    "\1\4\1\4\4\0\1\4\1\0\1\21\1\27\1\25\1\23\1\24"+
-    "\1\34\1\20\1\35\1\30\2\4\1\26\1\22\1\31\1\17\1\15"+
-    "\1\4\1\16\1\36\1\33\2\4\1\37\3\4\12\0\1\42\u1fa2\0"+
-    "\1\42\1\42\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\10\0\2\23\1\25\1\44\1\44\1\24\22\0\1\23\1\0\1\42"+
+    "\5\0\1\40\1\41\1\30\1\31\1\36\1\31\1\0\1\30\1\27"+
+    "\11\43\1\32\1\37\1\34\1\33\1\35\2\0\32\26\4\0\1\26"+
+    "\1\0\1\7\1\17\1\20\1\10\1\4\1\15\1\5\1\13\1\1"+
+    "\2\26\1\14\1\22\1\2\1\12\1\21\1\26\1\6\1\16\1\3"+
+    "\2\26\1\11\3\26\12\0\1\44\u1fa2\0\1\44\1\44\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
    * Translates characters to character classes
@@ -54,13 +51,15 @@ class Yylex {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\1\1\2\3\3\1\4\1\1\2\5\1\6\1\2"+
-    "\3\7\5\4\1\10\1\4\1\2\1\1\1\11\1\0"+
-    "\1\12\1\13\1\4\1\14\6\4\1\0\1\15\1\1"+
-    "\2\0\2\12\6\4\4\0\1\12\11\4";
+    "\1\1\1\2\11\3\3\4\1\1\1\5\1\6\1\2"+
+    "\3\7\1\10\1\11\1\12\1\13\1\2\1\1\1\14"+
+    "\1\3\1\15\5\3\1\16\4\3\1\17\1\0\1\20"+
+    "\1\1\2\3\1\21\7\3\1\0\1\3\1\22\1\23"+
+    "\1\24\7\3\1\25\1\26\1\27\4\3\1\30\1\31"+
+    "\1\32";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[62];
+    int [] result = new int[76];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -85,17 +84,19 @@ class Yylex {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\43\0\106\0\151\0\43\0\214\0\43\0\43"+
-    "\0\257\0\43\0\322\0\43\0\365\0\u0118\0\u013b\0\u015e"+
-    "\0\u0181\0\u01a4\0\u01c7\0\43\0\u01ea\0\u020d\0\u0230\0\43"+
-    "\0\u0253\0\u0276\0\43\0\u0299\0\214\0\u02bc\0\u02df\0\u0302"+
-    "\0\u0325\0\u0348\0\u036b\0\u020d\0\43\0\u038e\0\u03b1\0\u03d4"+
-    "\0\u03f7\0\43\0\u041a\0\u043d\0\u0460\0\u0483\0\u04a6\0\u04c9"+
-    "\0\u0230\0\u04ec\0\u050f\0\u0532\0\u050f\0\u0555\0\u0578\0\u059b"+
-    "\0\u05be\0\u05e1\0\u0604\0\u0627\0\u064a\0\u066d";
+    "\0\0\0\45\0\112\0\157\0\224\0\271\0\336\0\u0103"+
+    "\0\u0128\0\u014d\0\u0172\0\u0197\0\u01bc\0\45\0\45\0\45"+
+    "\0\45\0\u01e1\0\45\0\u0206\0\u022b\0\45\0\45\0\45"+
+    "\0\45\0\u0250\0\u0275\0\45\0\u029a\0\157\0\u02bf\0\u02e4"+
+    "\0\u0309\0\u032e\0\u0353\0\157\0\u0378\0\u039d\0\u03c2\0\u03e7"+
+    "\0\45\0\u0250\0\45\0\u040c\0\u0431\0\u0456\0\157\0\u047b"+
+    "\0\u04a0\0\u04c5\0\u04ea\0\u050f\0\u0534\0\u0559\0\u0275\0\u057e"+
+    "\0\157\0\157\0\157\0\u05a3\0\u05c8\0\u05ed\0\u0612\0\u0637"+
+    "\0\u065c\0\u0681\0\157\0\157\0\157\0\u06a6\0\u06cb\0\u06f0"+
+    "\0\u0715\0\157\0\157\0\157";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[62];
+    int [] result = new int[76];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -118,56 +119,57 @@ class Yylex {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
-    "\1\12\1\13\1\14\1\15\1\16\1\17\5\6\1\20"+
-    "\1\21\2\6\1\22\1\23\1\6\1\24\4\6\1\25"+
-    "\1\26\1\27\1\30\44\0\1\3\44\0\1\5\43\0"+
-    "\2\6\7\0\15\6\1\0\5\6\1\0\1\6\7\0"+
-    "\1\31\1\32\45\0\1\33\42\0\1\14\1\0\1\14"+
-    "\40\0\1\14\34\0\2\6\7\0\1\6\1\34\13\6"+
-    "\1\0\5\6\1\0\1\6\5\0\2\6\7\0\2\6"+
-    "\1\35\4\6\1\36\5\6\1\0\5\6\1\0\1\6"+
-    "\5\0\2\6\7\0\11\6\1\37\2\6\1\40\1\0"+
-    "\5\6\1\0\1\6\5\0\2\6\7\0\7\6\1\41"+
-    "\5\6\1\0\5\6\1\0\1\6\5\0\2\6\7\0"+
-    "\14\6\1\42\1\0\1\6\1\35\3\6\1\0\1\6"+
-    "\5\0\2\6\7\0\15\6\1\0\2\6\1\43\2\6"+
-    "\1\0\1\6\1\0\40\44\1\45\2\44\5\0\1\46"+
-    "\33\0\1\46\1\0\6\47\1\50\34\47\2\32\1\51"+
-    "\1\52\37\32\4\0\2\6\7\0\2\6\1\53\12\6"+
-    "\1\0\5\6\1\0\1\6\5\0\2\6\7\0\10\6"+
-    "\1\54\4\6\1\0\5\6\1\0\1\6\5\0\2\6"+
-    "\7\0\15\6\1\0\3\6\1\55\1\6\1\0\1\6"+
-    "\5\0\2\6\7\0\6\6\1\35\6\6\1\0\5\6"+
-    "\1\0\1\6\5\0\2\6\7\0\3\6\1\56\11\6"+
-    "\1\0\5\6\1\0\1\6\5\0\2\6\7\0\15\6"+
-    "\1\0\1\57\4\6\1\0\1\6\5\0\2\6\7\0"+
-    "\13\6\1\60\1\6\1\0\5\6\1\0\1\6\42\0"+
-    "\1\61\1\0\6\47\1\62\34\47\2\63\2\0\2\63"+
-    "\1\64\1\65\33\63\3\0\1\52\43\0\2\6\7\0"+
-    "\3\6\1\66\11\6\1\0\5\6\1\0\1\6\5\0"+
-    "\2\6\7\0\11\6\1\67\3\6\1\0\5\6\1\0"+
-    "\1\6\5\0\2\6\7\0\7\6\1\35\5\6\1\0"+
-    "\5\6\1\0\1\6\5\0\2\6\7\0\13\6\1\70"+
-    "\1\6\1\0\5\6\1\0\1\6\5\0\2\6\7\0"+
-    "\7\6\1\71\5\6\1\0\5\6\1\0\1\6\5\0"+
-    "\2\6\7\0\11\6\1\55\3\6\1\0\5\6\1\0"+
-    "\1\6\1\0\6\47\1\62\1\52\33\47\6\0\1\64"+
-    "\42\0\1\64\1\52\37\0\2\6\7\0\1\6\1\72"+
-    "\13\6\1\0\5\6\1\0\1\6\5\0\2\6\7\0"+
-    "\4\6\1\73\10\6\1\0\5\6\1\0\1\6\5\0"+
-    "\2\6\7\0\14\6\1\35\1\0\5\6\1\0\1\6"+
-    "\5\0\2\6\7\0\3\6\1\74\11\6\1\0\5\6"+
-    "\1\0\1\6\5\0\2\6\7\0\4\6\1\75\10\6"+
-    "\1\0\5\6\1\0\1\6\5\0\2\6\7\0\1\6"+
-    "\1\55\13\6\1\0\5\6\1\0\1\6\5\0\2\6"+
-    "\7\0\7\6\1\76\5\6\1\0\5\6\1\0\1\6"+
-    "\5\0\2\6\7\0\5\6\1\35\7\6\1\0\5\6"+
-    "\1\0\1\6\5\0\2\6\7\0\1\6\1\35\13\6"+
-    "\1\0\5\6\1\0\1\6\1\0";
+    "\1\2\1\3\1\4\1\5\1\6\1\4\1\7\1\4"+
+    "\1\10\1\11\5\4\1\12\1\4\1\13\1\4\1\14"+
+    "\1\15\1\16\1\4\1\17\1\20\1\21\1\22\1\23"+
+    "\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33"+
+    "\1\34\46\0\1\4\1\35\12\4\1\36\5\4\3\0"+
+    "\2\4\13\0\1\4\2\0\22\4\3\0\2\4\13\0"+
+    "\1\4\2\0\12\4\1\37\7\4\3\0\2\4\13\0"+
+    "\1\4\2\0\1\4\1\40\11\4\1\41\6\4\3\0"+
+    "\2\4\13\0\1\4\2\0\3\4\1\42\16\4\3\0"+
+    "\2\4\13\0\1\4\2\0\3\4\1\43\5\4\1\44"+
+    "\10\4\3\0\2\4\13\0\1\4\2\0\5\4\1\45"+
+    "\4\4\1\46\7\4\3\0\2\4\13\0\1\4\2\0"+
+    "\3\4\1\47\16\4\3\0\2\4\13\0\1\4\2\0"+
+    "\5\4\1\50\14\4\3\0\2\4\13\0\1\4\24\0"+
+    "\1\14\46\0\1\16\52\0\1\51\44\0\1\23\1\0"+
+    "\1\23\42\0\1\23\11\0\42\52\1\53\2\52\27\0"+
+    "\1\54\13\0\1\54\2\0\2\4\1\55\17\4\3\0"+
+    "\2\4\13\0\1\4\2\0\3\4\1\56\16\4\3\0"+
+    "\2\4\13\0\1\4\2\0\7\4\1\57\12\4\3\0"+
+    "\2\4\13\0\1\4\2\0\15\4\1\60\4\4\3\0"+
+    "\2\4\13\0\1\4\2\0\6\4\1\61\13\4\3\0"+
+    "\2\4\13\0\1\4\2\0\17\4\1\62\2\4\3\0"+
+    "\2\4\13\0\1\4\2\0\1\63\21\4\3\0\2\4"+
+    "\13\0\1\4\2\0\1\64\21\4\3\0\2\4\13\0"+
+    "\1\4\2\0\4\4\1\65\15\4\3\0\2\4\13\0"+
+    "\1\4\2\0\11\4\1\66\10\4\3\0\2\4\13\0"+
+    "\1\4\44\0\1\67\2\0\3\4\1\70\16\4\3\0"+
+    "\2\4\13\0\1\4\2\0\1\4\1\71\20\4\3\0"+
+    "\2\4\13\0\1\4\2\0\3\4\1\72\16\4\3\0"+
+    "\2\4\13\0\1\4\2\0\7\4\1\73\12\4\3\0"+
+    "\2\4\13\0\1\4\2\0\13\4\1\74\6\4\3\0"+
+    "\2\4\13\0\1\4\2\0\2\4\1\75\17\4\3\0"+
+    "\2\4\13\0\1\4\2\0\13\4\1\76\6\4\3\0"+
+    "\2\4\13\0\1\4\2\0\1\77\21\4\3\0\2\4"+
+    "\13\0\1\4\2\0\4\4\1\100\15\4\3\0\2\4"+
+    "\13\0\1\4\2\0\4\4\1\101\15\4\3\0\2\4"+
+    "\13\0\1\4\2\0\6\4\1\102\13\4\3\0\2\4"+
+    "\13\0\1\4\2\0\3\4\1\103\16\4\3\0\2\4"+
+    "\13\0\1\4\2\0\3\4\1\104\16\4\3\0\2\4"+
+    "\13\0\1\4\2\0\1\4\1\105\20\4\3\0\2\4"+
+    "\13\0\1\4\2\0\5\4\1\106\14\4\3\0\2\4"+
+    "\13\0\1\4\2\0\3\4\1\107\16\4\3\0\2\4"+
+    "\13\0\1\4\2\0\5\4\1\110\14\4\3\0\2\4"+
+    "\13\0\1\4\2\0\6\4\1\111\13\4\3\0\2\4"+
+    "\13\0\1\4\2\0\5\4\1\112\14\4\3\0\2\4"+
+    "\13\0\1\4\2\0\3\4\1\113\16\4\3\0\2\4"+
+    "\13\0\1\4\2\0\21\4\1\114\3\0\2\4\13\0"+
+    "\1\4\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1680];
+    int [] result = new int[1850];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -205,13 +207,12 @@ class Yylex {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\1\1\11\2\1\1\11\1\1\2\11\1\1\1\11"+
-    "\1\1\1\11\7\1\1\11\3\1\1\11\1\0\1\1"+
-    "\1\11\10\1\1\0\1\11\1\1\2\0\1\1\1\11"+
-    "\6\1\4\0\12\1";
+    "\1\1\1\11\13\1\4\11\1\1\1\11\2\1\4\11"+
+    "\2\1\1\11\14\1\1\11\1\0\1\11\13\1\1\0"+
+    "\25\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[62];
+    int [] result = new int[76];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -287,20 +288,24 @@ class Yylex {
   private int zzFinalHighSurrogate = 0;
 
   /* user code: */
-  	public final int yylenght() {
-    	return yytext().length();
-  	}
+	public final int yylenght() {
+		return yytext().length();
+	}
 
-  	public final int yyline() {
-    	return yyline;
-  	}
+	public final int yyline() {
+		return yyline;
+	}
 
-  	public boolean isZzAtEOF() {
-    	return zzAtEOF;
+	public final int yycolumn() {
+		return yycolumn;
+	}
+
+	public boolean isZzAtEOF() {
+		return zzAtEOF;
 	}
 
 	public void printSuccessMessage(int tag) {
-		Yytoken token = new Yytoken(tag, yytext(), yyline());
+		Token token = new Token(tag, yytext(), yyline(), yycolumn());
 	
 		System.out.println(token.toString() + "\n");
 		Utility.printSpace();
@@ -333,7 +338,7 @@ class Yylex {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 198) {
+    while (i < 150) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -537,13 +542,25 @@ class Yylex {
 
 
   /**
+   * Contains user EOF-code, which will be executed exactly once,
+   * when the end of file is reached
+   */
+  private void zzDoEOF() throws java.io.IOException {
+    if (!zzEOFDone) {
+      zzEOFDone = true;
+      yyclose();
+    }
+  }
+
+
+  /**
    * Resumes scanning until the next regular expression is matched,
    * the end of input is encountered or an I/O-Error occurs.
    *
    * @return      the next token
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
-  public int yylex() throws java.io.IOException {
+  public Token next_token() throws java.io.IOException {
     int zzInput;
     int zzAction;
 
@@ -679,62 +696,115 @@ class Yylex {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-        return YYEOF;
+            zzDoEOF();
+          { return null; }
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { printSuccessMessage(Tag.NUMBER);
+            { printSuccessMessage(Tag.CONSTANT);
             }
-          case 14: break;
+          case 27: break;
           case 2: 
             { printErrorMessage();
             }
-          case 15: break;
+          case 28: break;
           case 3: 
+            { printSuccessMessage(Tag.IDENTIFIER);
+            }
+          case 29: break;
+          case 4: 
             { 
             }
-          case 16: break;
-          case 4: 
-            { printSuccessMessage(Tag.ID);
-            }
-          case 17: break;
+          case 30: break;
           case 5: 
             { printSuccessMessage(Tag.MULT_OPERATOR);
             }
-          case 18: break;
+          case 31: break;
           case 6: 
             { printSuccessMessage(Tag.ADD_OPERATOR);
             }
-          case 19: break;
+          case 32: break;
           case 7: 
             { printSuccessMessage(Tag.RELATIONAL_OPERATOR);
             }
-          case 20: break;
+          case 33: break;
           case 8: 
+            { printSuccessMessage(Tag.COMMA);
+            }
+          case 34: break;
+          case 9: 
             { printSuccessMessage(Tag.SEMICOLON);
             }
-          case 21: break;
-          case 9: 
+          case 35: break;
+          case 10: 
+            { printSuccessMessage(Tag.PARENTHESE_LEFT);
+            }
+          case 36: break;
+          case 11: 
+            { printSuccessMessage(Tag.PARENTHESE_RIGHT);
+            }
+          case 37: break;
+          case 12: 
             { System.out.print(yytext());
             }
-          case 22: break;
-          case 10: 
-            { printSuccessMessage(Tag.COMMENT);
+          case 38: break;
+          case 13: 
+            { printSuccessMessage(Tag.IF);
             }
-          case 23: break;
-          case 11: 
+          case 39: break;
+          case 14: 
+            { printSuccessMessage(Tag.DO);
+            }
+          case 40: break;
+          case 15: 
             { printSuccessMessage(Tag.ASSIGN_OPERATOR);
             }
-          case 24: break;
-          case 12: 
-            { printSuccessMessage(Tag.KEYWORD);
-            }
-          case 25: break;
-          case 13: 
+          case 41: break;
+          case 16: 
             { printSuccessMessage(Tag.LITERAL);
             }
-          case 26: break;
+          case 42: break;
+          case 17: 
+            { printSuccessMessage(Tag.END);
+            }
+          case 43: break;
+          case 18: 
+            { printSuccessMessage(Tag.THEN);
+            }
+          case 44: break;
+          case 19: 
+            { printSuccessMessage(Tag.ELSE);
+            }
+          case 45: break;
+          case 20: 
+            { printSuccessMessage(Tag.READ);
+            }
+          case 46: break;
+          case 21: 
+            { printSuccessMessage(Tag.WRITE);
+            }
+          case 47: break;
+          case 22: 
+            { printSuccessMessage(Tag.WHILE);
+            }
+          case 48: break;
+          case 23: 
+            { printSuccessMessage(Tag.BEGIN);
+            }
+          case 49: break;
+          case 24: 
+            { printSuccessMessage(Tag.INTEGER);
+            }
+          case 50: break;
+          case 25: 
+            { printSuccessMessage(Tag.DECLARE);
+            }
+          case 51: break;
+          case 26: 
+            { printSuccessMessage(Tag.PROGRAM);
+            }
+          case 52: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
@@ -774,7 +844,7 @@ class Yylex {
           java.io.FileInputStream stream = new java.io.FileInputStream(argv[i]);
           java.io.Reader reader = new java.io.InputStreamReader(stream, encodingName);
           scanner = new Yylex(reader);
-          while ( !scanner.zzAtEOF ) scanner.yylex();
+          while ( !scanner.zzAtEOF ) scanner.next_token();
         }
         catch (java.io.FileNotFoundException e) {
           System.out.println("File not found : \""+argv[i]+"\"");

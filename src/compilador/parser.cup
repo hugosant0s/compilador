@@ -1,0 +1,38 @@
+package compilador;
+
+terminal INTEGER, READ, WRITE, DO, WHILE, IF, ELSE, THEN, BEGIN, END, DECLARE, PROGRAM,
+		 MULOP, ADDOP, ASSOP, RELOP,
+		 COMMA, SEMICOLON, PARENTHESE_LEFT, PARENTHESE_RIGHT;
+terminal Integer CONSTANT;
+terminal String IDENTIFIER, LITERAL;
+
+nonterminal type, ident_list, decl, decl_list, body, program,
+			stmt_suffix, while_stmt, condition, if_stmt, stmt, stmt_list,
+			assign_stmt, read_stmt, write_stmt, writeable,
+			expression, simple_expr, term, factor;
+
+precedence left MULOP, ADDOP;
+
+program ::= PROGRAM IDENTIFIER body;
+body ::= DECLARE decl_list BEGIN stmt_list END | BEGIN stmt_list END;
+decl_list ::= decl | decl SEMICOLON decl_list;
+decl ::= type ident_list;
+ident_list ::= IDENTIFIER | IDENTIFIER COMMA ident_list;
+type ::= INTEGER;
+
+stmt_list ::= stmt | stmt SEMICOLON stmt_list;
+stmt ::= assign_stmt | if_stmt | while_stmt | read_stmt | write_stmt;
+if_stmt ::= IF condition THEN stmt_list END | IF condition THEN stmt_list ELSE stmt_list END;
+condition ::= expression;
+while_stmt ::= DO stmt_list stmt_suffix;
+stmt_suffix ::= WHILE condition;
+
+assign_stmt ::= IDENTIFIER ASSOP simple_expr;
+read_stmt ::= READ PARENTHESE_LEFT IDENTIFIER PARENTHESE_RIGHT;
+write_stmt ::= WRITE PARENTHESE_LEFT writeable PARENTHESE_RIGHT;
+writeable ::= simple_expr | LITERAL;
+
+expression ::= simple_expr | simple_expr RELOP simple_expr;
+simple_expr ::= term | simple_expr ADDOP term;
+term ::= factor | term MULOP factor;
+factor ::= IDENTIFIER | CONSTANT | PARENTHESE_LEFT expression PARENTHESE_RIGHT;
